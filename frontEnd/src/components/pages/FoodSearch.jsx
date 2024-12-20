@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { addToCart } from '../../features/cart/cartSlice';
 
 const FoodSearch = () => {
@@ -18,8 +18,9 @@ const FoodSearch = () => {
         searchFoodItems();
     }, [searchStr]);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     return foods ? (
-        <div className='flex flex-wrap gap-4 p-4'>
+        <div className='flex flex-wrap gap-8 p-4'>
             {foods.map((food) => (
                 <div className="max-w-sm rounded-lg shadow-lg overflow-hidden bg-white mx-auto">
                     <div className="relative">
