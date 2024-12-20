@@ -6,6 +6,7 @@ import Signup from './components/auth/Signup'
 import New from './New'
 import FoodItem from './components/pages/FoodItem'
 import FoodSearch from './components/pages/FoodSearch'
+import Cart from './components/pages/Cart'
 
 function App() {
   const router = createBrowserRouter([
@@ -32,6 +33,10 @@ function App() {
     {
       path: "/new",
       element: <New />
+    },
+    {
+      path: "/cart",
+      element: <Cart />
     }
   ])
 

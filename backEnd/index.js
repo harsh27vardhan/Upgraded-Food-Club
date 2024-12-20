@@ -4,6 +4,7 @@ const { connectMongoDB } = require("./configs/connections");
 const User = require("./models/user");
 const userRoute = require("./routes/user");
 const foodRoute = require("./routes/food");
+const cartRoute = require("./routes/cart");
 const server = express();
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
@@ -27,6 +28,7 @@ server.use(cookieParser());
 
 server.use("/user", userRoute);
 server.use("/food", foodRoute);
+server.use("/cart", cartRoute);
 
 // server.use(express.cookieParser());
 

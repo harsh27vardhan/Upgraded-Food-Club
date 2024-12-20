@@ -32,12 +32,15 @@ const Header = () => {
                 <div className="flex w-full justify-between h-[36px] items-center" >
                     <h3 className="text-3xl font-semibold ">Food Club</h3>
                     <div className="h-full flex flex-col items-end relative">
-                        <img
-                            src={UserIcon}
-                            alt=""
-                            className="h-full aspect-square rounded-[50%] bg-white cursor-pointer"
-                            onClick={() => setShowOptions(!showOptions)}
-                        />
+                        <div className="flex h-full gap-2 items-center">
+                            {user === "CUSTOMER" ? <p className="text-[25px]" onClick={() => navigate("/cart")}>🛒</p> : null}
+                            <img
+                                src={UserIcon}
+                                alt=""
+                                className="h-full aspect-square rounded-[50%] bg-white cursor-pointer"
+                                onClick={() => setShowOptions(!showOptions)}
+                            />
+                        </div>
                         {showOptions && <div className="flex flex-col p-4 rounded-lg shadow-red-300 shadow-lg bg-white z-[1] gap-2 border-2 border-red-500 fixed top-14">
                             <button className="border-2 border-black p-1 rounded-md">Get All Foods</button>
                             <form onSubmit={handleLogOutUser} className="w-full">

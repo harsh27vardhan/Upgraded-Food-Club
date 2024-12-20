@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { addToCart } from '../../features/cart/cartSlice';
 
 const FoodSearch = () => {
     const { searchStr } = useParams();
@@ -15,6 +17,7 @@ const FoodSearch = () => {
     useEffect(() => {
         searchFoodItems();
     }, [searchStr]);
+    const dispatch = useDispatch();
     return foods ? (
         <div className='flex flex-wrap gap-4 p-4'>
             {foods.map((food) => (
@@ -52,6 +55,12 @@ const FoodSearch = () => {
                             </p>
                             <button
                                 className="bg-[#ffc47b] text-black font-medium px-4 py-2 rounded-lg hover:bg-[#ffbe6f] transition"
+                                onClick={() => {
+                                    console.log("Order Button Clicked");
+                                    dispatch(addToCart({ ...food, foodId: food._id }));
+                                    alert("Food Item Added!");
+                                    navigate("/cart");
+                                }}
                             >
                                 Order Now
                             </button>

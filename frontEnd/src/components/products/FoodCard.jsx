@@ -1,8 +1,11 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { addToCart } from '../../features/cart/cartSlice';
 
 function FoodCard({ food }) {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     return (
         <div
             key={food._id}
@@ -62,7 +65,9 @@ function FoodCard({ food }) {
                 <button
                     onClick={(e) => {
                         e.stopPropagation();
-                        console.log("Add to cart button is clicked..");
+                        dispatch(addToCart({ ...food, foodId: food._id }));
+                        alert("Food Item Added!");
+                        navigate("/cart");
                         // navigate(`/food/${food.id}`);
                     }
                     }

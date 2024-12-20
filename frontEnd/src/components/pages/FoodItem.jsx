@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { addToCart } from '../../features/cart/cartSlice';
 
 const FoodItem = () => {
     const [food, setFood] = useState(null);
@@ -11,11 +13,13 @@ const FoodItem = () => {
         console.log(response);
         setFood(response.data.food);
     }
+    const dispatch = useDispatch();
     useEffect(() => {
         console.log('useEffect Hook is called');
         console.log(foodId);
         getFoodById();
-    }, [foodId])
+    }, [foodId]);
+    const navigate = useNavigate();
     //We have to add foodId as dependancy, as it is the which which is not changing and we want to extract the data only once, If we don't give the dependancy of foodId then it'll be a infinite loop.
     console.log(food);
     return (
@@ -58,8 +62,14 @@ const FoodItem = () => {
                     </p>
                     <button
                         className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+                        onClick={() => {
+                            console.log("Order Button Clicked");
+                            dispatch(addToCart({ ...food, foodId: food._id }));
+                            alert("Food Item Added!");
+                            navigate("/cart");
+                        }}
                     >
-                        Order Now
+                        Add to Cart
                     </button>
                 </div>
             </div>
