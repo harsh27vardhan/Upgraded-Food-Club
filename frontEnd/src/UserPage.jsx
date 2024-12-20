@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import SearchIcon from "./assets/search.svg";
-import UserIcon from "./assets/user.svg";
 import AppetizerImg from "./assets/appetizer.webp";
 import MainCourse from "./assets/main-course.jpeg";
 import FastFoodImg from "./assets/fastfood.jpeg";
@@ -155,30 +154,41 @@ const UserPage = ({ city }) => {
                 </div>
             </div>
 
-            <div className="flex flex-col gap-2 p-4">
-                <p className="text-xl font-semibold">Explore Other options</p>
-                <ul className="flex flex-wrap gap-6 gap-y-1 list-disc px-2">
-                    <li onClick={handleClickToSearch}>Beverages</li>
-                    <li onClick={handleClickToSearch}>Biryani</li>
-                    <li onClick={handleClickToSearch}>Burger</li>
-                    <li onClick={handleClickToSearch}>Cafe</li>
-                    <li onClick={handleClickToSearch}>Chinese</li>
-                    <li onClick={handleClickToSearch}>Coffee</li>
-                    <li onClick={handleClickToSearch}>Desserts</li>
-                    <li onClick={handleClickToSearch}>Ice Cream</li>
-                    <li onClick={handleClickToSearch}>Italian</li>
-                    <li onClick={handleClickToSearch}>Momos</li>
-                    <li onClick={handleClickToSearch}>Mughlai</li>
-                    <li onClick={handleClickToSearch}>North Indian</li>
-                    <li onClick={handleClickToSearch}>Pasta</li>
-                    <li onClick={handleClickToSearch}>Pizza</li>
-                    <li onClick={handleClickToSearch}>Rolls</li>
-                    <li onClick={handleClickToSearch}>Sandwich</li>
-                    <li onClick={handleClickToSearch}>Shake</li>
-                    <li onClick={handleClickToSearch}>South Indian</li>
-                    <li onClick={handleClickToSearch}>Street</li>
-                    <li onClick={handleClickToSearch}>Tea</li>
-                </ul>
+            <div className="flex flex-col gap-4 p-4">
+                <p className="text-xl font-semibold">Explore Other Options</p>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                    {[
+                        { name: "Biryani", image: "bBiryani.jpg" },
+                        { name: "Burger", image: "Burger.jpg" },
+                        { name: "Cafe", image: "Cafe.jpg" },
+                        { name: "Chinese", image: "Chinese.jpg" },
+                        { name: "Coffee", image: "Coffee.jpg" },
+                        { name: "Ice Cream", image: "Icecream.jpg" },
+                        { name: "Italian", image: "Italian.jpg" },
+                        { name: "North Indian", image: "Northindian.jpg" },
+                        { name: "Pasta", image: "Pasta.jpg" },
+                        { name: "Pizza", image: "Pizza.jpg" },
+                        { name: "Rolls", image: "Rolls.jpg" },
+                        { name: "Shake", image: "Shake.jpg" },
+                        { name: "South Indian", image: "Southindian.jpg" },
+                        { name: "Street", image: "Street.jpg" },
+                    ].map((item, index) => (
+                        <div
+                            key={index}
+                            onClick={handleClickToSearch}
+                            className="flex flex-col items-center bg-white border border-gray-300 rounded-lg p-3 shadow-md hover:shadow-lg cursor-pointer transition-shadow"
+                        >
+                            <img
+                                src={`path/to/images/${item.image}`} // Replace with your image directory
+                                alt={item.name}
+                                className="w-[50%] aspect-video object-cover rounded-md"
+                            />
+                            <p className="mt-2 text-center text-gray-800 font-medium">
+                                {item.name}
+                            </p>
+                        </div>
+                    ))}
+                </div>
             </div>
 
             <p className="text-xl font-semibold px-4">Popular Foods</p>

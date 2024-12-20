@@ -109,20 +109,58 @@ const RestroHome = () => {
             //Maintain the states using redux and update the todos so that the restro homepage shows the deleted items
         }
         return (
-            <div className='flex flex-col gap-2 border bg-white p-4 rounded-lg shadow-lg w-[350px]'>
-                <img src={food.image} alt={food.name} />
-                <h3>{food.name}</h3>
-                <p>{food.description}</p>
-                <div className='flex justify-between items-center'>
-                    <p>Only {food.availableQty} left in stock!</p>
-                    <p className='text-lg font-bold text-purple-900'>Price: ${food.price}</p>
+            <div className="flex flex-col gap-4 border bg-white p-6 rounded-lg shadow-lg w-full max-w-sm">
+                <div className="relative">
+                    <img
+                        src={food.image}
+                        alt={food.name}
+                        className="w-full h-48 object-cover rounded-t-lg"
+                    />
+                    <div
+                        className={`absolute top-2 right-2 text-white text-sm px-3 py-1 rounded-md shadow-md ${food.isVeg === "true" ? "bg-green-500" : "bg-red-500"
+                            }`}
+                    >
+                        {food.isVeg === "true" ? "Veg" : "Non-Veg"}
+                    </div>
                 </div>
-                <div className='flex justify-end gap-2'>
-                    <button onClick={handleEditFoodItem} className='text-blue-600 font-bold'>Edit</button>
-                    <p>|</p>
-                    <button onClick={handleDeleteFoodItem} className='text-red-600 font-bold'>Delete</button>
+                <div className="flex flex-col gap-2">
+                    <h3 className="text-xl font-semibold text-gray-800">{food.name}</h3>
+                    <p className="text-gray-600">{food.description}</p>
+                    <div className="flex justify-between items-center">
+                        <p className="text-sm text-gray-500">
+                            Only <span className="font-medium text-gray-700">{food.availableQty}</span> left in stock!
+                        </p>
+                        <p className="text-lg font-bold text-purple-900">
+                            Price: ${food.price}
+                        </p>
+                    </div>
+                    <div className="flex justify-between items-center mt-2">
+                        <p className="flex items-center gap-1 text-sm text-gray-600">
+                            <span className="font-bold">{food.rating.toFixed(1)}</span> ⭐
+                        </p>
+                        {food.discount > 0 && (
+                            <p className="text-sm text-green-600">
+                                Discount: <span className="font-bold">{food.discount}%</span>
+                            </p>
+                        )}
+                    </div>
+                </div>
+                <div className="flex justify-between items-center mt-4">
+                    <button
+                        onClick={handleEditFoodItem}
+                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md transition-all"
+                    >
+                        Edit
+                    </button>
+                    <button
+                        onClick={handleDeleteFoodItem}
+                        className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-md transition-all"
+                    >
+                        Delete
+                    </button>
                 </div>
             </div>
+
         )
     }
 
@@ -143,26 +181,98 @@ const RestroHome = () => {
                 </div>}
             </div>
             {addFoodItem && (
-                <div className='flex flex-col w-full h-[100vh] gap-4 justify-center items-center bg-[#00000046] absolute top-0 left-0' onClick={() => setAddFoodItem(false)}>
-                    <div className='bg-white flex flex-col justify-center items-center p-8 rounded-md shadow-md' onClick={(e) => { e.stopPropagation() }}>
-                        <h2 className='text-lg font-bold mb-4'>Add Food</h2>
-                        <form className='flex flex-col w-full' onSubmit={handleAddFormData}>
-                            <input required type="text" onChange={handleInputChange} placeholder="Food Name" name='name' className='p-2 mb-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500' />
-                            <input required type="text" onChange={handleInputChange} placeholder="Category" name='category' className='p-2 mb-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500' />
-                            <input required type="text" onChange={handleInputChange} placeholder="Description" name="description" className='p-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500' />
-                            <select name='isVeg' id="" onChange={handleInputChange} className='p-2 mb-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500' >
-                                <option selected value="true">Veg</option>
+                <div
+                    className="flex flex-col w-full h-[100vh] gap-4 justify-center items-center bg-[#00000046] absolute top-0 left-0 z-50 px-4"
+                    onClick={() => setAddFoodItem(false)}
+                >
+                    <div
+                        className="bg-white flex flex-col justify-center items-center p-6 md:p-8 rounded-lg shadow-lg w-full max-w-md h-[90%]"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <h2 className="text-2xl font-semibold mb-6 text-gray-800">Add Food</h2>
+                        <form className="flex flex-col w-full" onSubmit={handleAddFormData}>
+                            <input
+                                required
+                                type="text"
+                                onChange={handleInputChange}
+                                placeholder="Food Name"
+                                name="name"
+                                className="p-1 mb-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                            <input
+                                required
+                                type="text"
+                                onChange={handleInputChange}
+                                placeholder="Category"
+                                name="category"
+                                className="p-1 mb-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                            <textarea
+                                required
+                                onChange={handleInputChange}
+                                placeholder="Description"
+                                name="description"
+                                rows={3}
+                                className="p-1 mb-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                            />
+                            <select
+                                name="isVeg"
+                                onChange={handleInputChange}
+                                className="p-1 mb-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            >
+                                <option value="true" defaultValue>
+                                    Veg
+                                </option>
                                 <option value="false">Non-Veg</option>
                             </select>
-                            <input required type="number" onChange={handleInputChange} placeholder="Price" name='price' className='p-2 mb-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500' />
-                            <input required type="number" onChange={handleInputChange} placeholder="Available Qualtity" name='availableQty' className='p-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500' />
-                            <input type="text" onChange={handleInputChange} placeholder="Image link" name='image' className='p-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500' />
-                            <input required type="number" onChange={handleInputChange} placeholder="Rating" name='rating' className='p-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500' />
-                            <input type="number" onChange={handleInputChange} placeholder="Discount" name='discount' className='p-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500' />
-                            <button type="submit" className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md'>Add Food</button>
+                            <input
+                                required
+                                type="number"
+                                onChange={handleInputChange}
+                                placeholder="Price"
+                                name="price"
+                                className="p-1 mb-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                            <input
+                                required
+                                type="number"
+                                onChange={handleInputChange}
+                                placeholder="Available Quantity"
+                                name="availableQty"
+                                className="p-1 mb-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                            <input
+                                type="text"
+                                onChange={handleInputChange}
+                                placeholder="Image Link"
+                                name="image"
+                                className="p-1 mb-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                            <input
+                                required
+                                type="number"
+                                onChange={handleInputChange}
+                                placeholder="Rating"
+                                name="rating"
+                                className="p-1 mb-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                            <input
+                                type="number"
+                                onChange={handleInputChange}
+                                placeholder="Discount"
+                                name="discount"
+                                className="p-3 mb-6 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                            <button
+                                type="submit"
+                                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-md transition-all duration-200"
+                            >
+                                Add Food
+                            </button>
                         </form>
                     </div>
                 </div>
+
             )}
             {/* {editFoodItem && (
                 <div className='flex flex-col w-full h-[100vh] gap-4 justify-center items-center bg-[#00000046] absolute top-0 left-0' onClick={() => setEditFoodItem(false)}>
