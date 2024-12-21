@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import foodBG from "../../assets/foodBG.png";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -33,8 +34,14 @@ const Login = () => {
         }
     }
     return (
-        <div className="flex h-[100vh] justify-center w-full items-center">
-            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <div className="flex w-full h-screen justify-center items-center"
+            style={{
+                backgroundImage: `url(${foodBG})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+            }}>
+            <div className="bg-white bg-opacity-80 backdrop-blur-md p-8 rounded-lg shadow-lg w-fit max-w-md">
                 <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">Login to Your Account</h2>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     <input

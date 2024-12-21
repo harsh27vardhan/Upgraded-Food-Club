@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import foodBG from "../../assets/foodBG.png";
 
 const Signup = () => {
     const [formData, setFormData] = useState({
@@ -35,9 +36,14 @@ const Signup = () => {
     }
     const [userType, setUserType] = useState(null);
     return (
-        <div className="flex h-[100vh] justify-center w-full items-center">
-            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-                <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">
+        <div className="flex h-[100vh] justify-center w-full items-center" style={{
+            backgroundImage: `url(${foodBG})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+        }}>
+            <div className="bg-white bg-opacity-80 backdrop-blur-md p-8 rounded-lg shadow-lg w-fit max-w-md">
+                <h2 className="text-2xl font-bold text-center text-black mb-6">
                     Create a New Account
                 </h2>
                 {userType ? (
@@ -74,16 +80,6 @@ const Signup = () => {
                             className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 bg-transparent text-black"
                             required
                         />
-                        {/* <div className="flex justify-start text-black">
-                            <input
-                                type="checkbox"
-                                id="role"
-                                name="role"
-                                onChange={handleChange}
-                                className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 bg-transparent text-black"
-                            />
-                            <label htmlFor="restro">If you're a Restrorant?</label>
-                        </div> */}
                         <button
                             type="submit"
                             className="bg-blue-500 text-white font-semibold p-3 rounded-md hover:bg-blue-600 transition duration-300"
