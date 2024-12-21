@@ -1,6 +1,7 @@
 const { getUser } = require("../services/auth");
 
 exports.checkAuth = (req, res, next) => {
+  console.log("Consoling req.cookies");
   console.log(req.cookies);
   const cookieToken = req.cookies?.token;
   const headerToken = req.headers?.authorization?.split(" ")[1] ?? "";

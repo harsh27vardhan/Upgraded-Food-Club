@@ -68,9 +68,9 @@ const HomePage = () => {
             navigate("/login");
         }
     }
-    console.log(document.cookie);
+    // console.log(document.cookie);
     // const userRole = document.cookie.split("userRole=")[1];
-    const userRole = document.cookie;
+    const userRole = localStorage.getItem("userRole");
     console.log(userRole);
     return userRole === "CUSTOMER" ? (< UserPage city={city} />) : userRole === "ADMIN" ? (< RestroHome />) : (
         <>You're an unauthorised user....</>
