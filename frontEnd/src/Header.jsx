@@ -17,7 +17,7 @@ const Header = () => {
 
     async function handleLogOutUser(e) {
         e.preventDefault();
-        const res = await axios.post("http://localhost:3030/user/logout", {}, {
+        const res = await axios.post("https://upgraded-food-club.onrender.com/user/logout", {}, {
             withCredentials: true,
         });
         if (res.status === 200) {

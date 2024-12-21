@@ -12,7 +12,7 @@ const Cart = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3030/cart/${userId}`);
+                const response = await axios.get(`https://upgraded-food-club.onrender.com/cart/${userId}`);
                 dispatch(setCart(response.data.items));
             } catch (err) {
                 console.log(err);
@@ -31,7 +31,7 @@ const Cart = () => {
 
     const handleRemoveItem = async (foodId) => {
         try {
-            await axios.delete(`http://localhost:3030/cart/${userId}/${foodId}`);
+            await axios.delete(`https://upgraded-food-club.onrender.com/cart/${userId}/${foodId}`);
             dispatch(removeFromCart(foodId));
         } catch (err) {
             console.log(err);
@@ -40,7 +40,7 @@ const Cart = () => {
 
     const handleQuantityChange = async (foodId, newQuantity) => {
         try {
-            await axios.patch(`http://localhost:3030/cart/${userId}/${foodId}`, {
+            await axios.patch(`https://upgraded-food-club.onrender.com/cart/${userId}/${foodId}`, {
                 quantity: newQuantity,
             });
             const updatedCartItems = cartItems.map((item) =>

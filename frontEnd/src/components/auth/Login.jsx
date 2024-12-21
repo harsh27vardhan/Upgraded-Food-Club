@@ -17,7 +17,7 @@ const Login = () => {
         e.preventDefault();
         console.log(formData);
         try {
-            const response = await axios.post("http://localhost:3030/user/login", formData, {
+            const response = await axios.post("https://upgraded-food-club.onrender.com/user/login", formData, {
                 withCredentials: true,
             });
             console.log(response);

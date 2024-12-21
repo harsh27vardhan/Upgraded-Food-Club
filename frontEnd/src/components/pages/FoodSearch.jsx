@@ -8,7 +8,7 @@ const FoodSearch = () => {
     const { searchStr } = useParams();
     const [foods, setFoods] = useState(null);
     async function searchFoodItems() {
-        const response = await axios.get(`http://localhost:3030/food/search/${searchStr}`);
+        const response = await axios.get(`https://upgraded-food-club.onrender.com/food/search/${searchStr}`);
         console.log(response);
         if (response.status === 200) {
             setFoods(response.data);

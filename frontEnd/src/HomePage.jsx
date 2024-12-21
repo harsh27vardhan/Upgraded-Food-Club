@@ -51,7 +51,7 @@ const HomePage = () => {
     async function fetchData(searchQuery) {
         //  redirect it to the page where there is fetched data and filter it.
         try {
-            const response = await fetch("http://localhost:3030/food", {
+            const response = await fetch("https://upgraded-food-club.onrender.com/food", {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'

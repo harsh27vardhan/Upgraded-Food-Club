@@ -19,18 +19,18 @@ const UserPage = ({ city }) => {
         if (text === "") {
             console.log("Pleave give a text");
             //Fetch all the food items from the database
-            const response = await axios.get("http://localhost:3030/food", {
+            const response = await axios.get("https://upgraded-food-club.onrender.com/food", {
                 withCredentials: true,
             });
             console.log(response);
             setFoods(response.data.food);
-            const cartResponse = await axios.get(`http://localhost:3030/cart/${localStorage.getItem("_id")}`);
+            const cartResponse = await axios.get(`https://upgraded-food-club.onrender.com/cart/${localStorage.getItem("_id")}`);
             console.log(cartResponse);
         }
         else {
             console.log(text);
             //Fetch data from the database according to the text
-            // const response = await axios.get(`http://localhost:3030/food/search/${text}`);
+            // const response = await axios.get(`https://upgraded-food-club.onrender.com/food/search/${text}`);
             // console.log(response);
             navigate(`/search/${text}`);
 

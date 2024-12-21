@@ -9,7 +9,7 @@ const FoodItem = () => {
     const { foodId } = useParams();
     async function getFoodById() {
         console.log('foodId : ', foodId);
-        const response = await axios.get(`http://localhost:3030/food/food-item/${foodId}`);
+        const response = await axios.get(`https://upgraded-food-club.onrender.com/food/food-item/${foodId}`);
         console.log(response);
         setFood(response.data.food);
     }

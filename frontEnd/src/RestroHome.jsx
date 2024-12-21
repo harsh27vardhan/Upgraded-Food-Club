@@ -22,7 +22,7 @@ const RestroHome = () => {
     async function getFood() {
         try {
             console.log(localStorage.getItem("_id"));
-            const response = await axios.get(`http://localhost:3030/food/restro/${localStorage.getItem("_id")}`, {
+            const response = await axios.get(`https://upgraded-food-club.onrender.com/food/restro/${localStorage.getItem("_id")}`, {
                 withCredentials: true, /// Have to include credentials as we're checking for the cookies in the backend..
             });
             console.log(response);
@@ -47,7 +47,7 @@ const RestroHome = () => {
         //If added..remove the form and show added
         //ERROR
         try {
-            const response = await axios.post("http://localhost:3030/food", formData, {
+            const response = await axios.post("https://upgraded-food-club.onrender.com/food", formData, {
                 withCredentials: true,
             });
             console.log(response);
@@ -69,7 +69,7 @@ const RestroHome = () => {
     //     //If added..remove the form and show added
     //     //ERROR
     //     try {
-    //         // const response = await axios.post("http://localhost:3030/food", formData, {
+    //         // const response = await axios.post("https://upgraded-food-club.onrender.com/food", formData, {
     //         //     withCredentials: true,
     //         // });
     //         // console.log(response);
@@ -98,7 +98,7 @@ const RestroHome = () => {
         async function handleDeleteFoodItem() {
             console.log("Deleting Food Item");
             console.log(food);
-            const response = await axios.delete(`http://localhost:3030/food/${food._id}`, {
+            const response = await axios.delete(`https://upgraded-food-club.onrender.com/food/${food._id}`, {
                 withCredentials: true,
             });
             console.log(response);

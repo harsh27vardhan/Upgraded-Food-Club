@@ -21,7 +21,9 @@ const cartSlice = createSlice({
         existingItem.quantity += 1;
       }
       const response = axios.post(
-        `http://localhost:3030/cart/${localStorage.getItem("_id")}`,
+        `https://upgraded-food-club.onrender.com/cart/${localStorage.getItem(
+          "_id"
+        )}`,
         action.payload
       );
       console.log(response);
@@ -31,9 +33,9 @@ const cartSlice = createSlice({
         (item) => item.foodId !== action.payload
       );
       const response = axios.delete(
-        `http://localhost:3030/cart/${localStorage.getItem("_id")}/${
-          action.payload
-        }`
+        `https://upgraded-food-club.onrender.com/cart/${localStorage.getItem(
+          "_id"
+        )}/${action.payload}`
       );
       console.log(response);
     },
