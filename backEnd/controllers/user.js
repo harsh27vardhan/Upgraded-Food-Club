@@ -47,7 +47,7 @@ exports.logInUser = async (req, res) => {
       });
       res.cookie("userRole", user.role, {
         httpOnly: false, // can access this cookie from the front end
-        secure: false,
+        secure: true,
         sameSite: "Lax",
         priority: "High",
         maxAge: 7 * 24 * 60 * 60 * 1000,
