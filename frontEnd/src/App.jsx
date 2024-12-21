@@ -7,6 +7,7 @@ import New from './New'
 import FoodItem from './components/pages/FoodItem'
 import FoodSearch from './components/pages/FoodSearch'
 import Cart from './components/pages/Cart'
+import Header from './Header'
 
 function App() {
   const router = createBrowserRouter([
@@ -24,11 +25,17 @@ function App() {
     },
     {
       path: "/foodItem/:foodId",
-      element: <FoodItem />,
+      element: <>
+        <Header />
+        <FoodItem />,
+      </>
     },
     {
       path: "/search/:searchStr",
-      element: <FoodSearch />,
+      element: <>
+        <Header />
+        <FoodSearch />,
+      </>
     },
     {
       path: "/new",
@@ -36,7 +43,10 @@ function App() {
     },
     {
       path: "/cart",
-      element: <Cart />
+      element: <>
+        <Header />
+        <Cart />
+      </>
     }
   ])
 

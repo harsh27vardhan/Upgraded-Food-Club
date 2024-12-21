@@ -126,10 +126,10 @@ const UserPage = ({ city }) => {
                     >
                         <img
                             src={DessertImg}
-                            alt="Desserts"
+                            alt="Dessert"
                             className="w-[100%] aspect-square rounded-[50%]"
                         />
-                        <p>Desserts</p>
+                        <p>Dessert</p>
                     </div>
                     <div
                         className="user-food-category-cont flex flex-col w-[12%] items-center gap-2"

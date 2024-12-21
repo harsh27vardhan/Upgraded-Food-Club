@@ -30,6 +30,12 @@ const cartSlice = createSlice({
       state.items = state.items.filter(
         (item) => item.foodId !== action.payload
       );
+      const response = axios.delete(
+        `http://localhost:3030/cart/${localStorage.getItem("_id")}/${
+          action.payload
+        }`
+      );
+      console.log(response);
     },
   },
 });

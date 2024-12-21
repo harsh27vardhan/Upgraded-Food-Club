@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import UserIcon from "./assets/user.svg";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie"
 import axios from "axios";
 
@@ -26,6 +26,8 @@ const Header = () => {
         }
     }
 
+    const location = useLocation();
+    // console.log("Current Route:", location.pathname);
     return (
         <div className="flex flex-col items-start">
             <div className="flex w-[100vw] flex-col gap-0 p-4 justify-between shadow-lg">
@@ -33,7 +35,7 @@ const Header = () => {
                     <h3 className="text-3xl font-semibold ">Food Club</h3>
                     <div className="h-full flex flex-col items-end relative">
                         <div className="flex h-full gap-2 items-center">
-                            {user === "CUSTOMER" ? <p className="text-[25px]" onClick={() => navigate("/cart")}>🛒</p> : null}
+                            {user === "CUSTOMER" ? <p className="text-[25px] cursor-pointer" onClick={() => navigate("/cart")}>🛒</p> : null}
                             <img
                                 src={UserIcon}
                                 alt=""
@@ -50,11 +52,14 @@ const Header = () => {
                     </div>
                 </div>
             </div >
-            <div className="flex flex-col p-4">
-                <h3 className="text-[1.3rem] font-semibold">Hello {user === "CUSTOMER" ? "User" : "Restro"}! 👋</h3>
-                {user === "CUSTOMER" && <p>It's {currentHour <= 11 ? "Breakfast" : currentHour <= 15 ? "Lunch" : currentHour <= 20 ? "Snacks" : "Dinner"} time!</p>}
-            </div>
-        </div>
+            {
+                location.pathname === "/" &&
+                <div className="flex flex-col p-4">
+                    <h3 className="text-[1.3rem] font-semibold">Hello {user === "CUSTOMER" ? "User" : "Restro"}! 👋</h3>
+                    {user === "CUSTOMER" && <p>It's {currentHour <= 11 ? "Breakfast" : currentHour <= 15 ? "Lunch" : currentHour <= 20 ? "Snacks" : "Dinner"} time!</p>}
+                </div>
+            }
+        </div >
     )
 };
 

@@ -67,7 +67,7 @@ exports.updateCartItemQuantity = async (req, res) => {
     if (!cart) {
       return res.status(404).send({ message: "Cart not found", error: true });
     }
-    const item = cart.items.find((item) => item.id === foodId);
+    const item = cart.items.find((item) => item.foodId === foodId);
     if (!item) {
       return res
         .status(404)
