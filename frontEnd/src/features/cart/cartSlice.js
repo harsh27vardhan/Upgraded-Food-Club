@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
   items: [],
@@ -19,6 +20,11 @@ const cartSlice = createSlice({
       } else {
         existingItem.quantity += 1;
       }
+      const response = axios.post(
+        `http://localhost:3030/cart/${localStorage.getItem("_id")}`,
+        action.payload
+      );
+      console.log(response);
     },
     removeFromCart: (state, action) => {
       state.items = state.items.filter(

@@ -2,12 +2,14 @@ const Cart = require("../models/cart");
 
 exports.getAllItemsFromCart = async (req, res) => {
   const { userId } = req.params;
+  // console.log(userId);
   try {
-    const cart = await Cart.findOne({ userId }).populate("items.foodId"); // Here we have the items key of the cart schema with a foodId with it.
+    let cart = await Cart.findOne({ userId });
+    // .populate("items.foodId"); // Here we have the items key of the cart schema with a foodId with it.
     if (!cart) {
       return res.status(404).send({ message: "Cart not found", error: true });
     }
-    res.status(200).json(cart);
+    res.status(200).send(cart);
   } catch (error) {
     res.status(500).send({ message: "Failed to get cart items", error: true });
   }
@@ -17,22 +19,40 @@ exports.addItemToCart = async (req, res) => {
   const { userId } = req.params;
   const { foodId, name, price, image, quantity } = req.body;
   try {
+    console.log("Trying to add");
+
+    // Find the cart for the user
     let cart = await Cart.findOne({ userId });
+
+    // If no cart exists, create a new one
     if (!cart) {
-      cart = new Cart({ userId, items: [] });
+      console.log("Cart not found with this userId");
+      cart = await Cart.create({ userId, items: [] });
+      console.log("Cart created");
     }
+
+    // Find the index of the item in the cart
     const itemIndex = cart.items.findIndex((item) =>
       item.foodId.equals(foodId)
     );
-    //checking if the food item is already present in the items array and if it exists in the cart, will increase the quantity by 1.
+
+    // Check if the food item already exists
     if (itemIndex > -1) {
+      // If exists, increment the quantity
       cart.items[itemIndex].quantity += quantity || 1;
     } else {
+      // If not, add the new item to the cart
       cart.items.push({ foodId, name, price, image, quantity: 1 });
     }
+
+    // Save the cart
     await cart.save();
+    console.log(cart);
+
+    // Send a successful response
     res.status(200).json({ message: "Item added to cart", cart });
   } catch (error) {
+    console.log("Error occurred:", error);
     res
       .status(500)
       .send({ message: "Failed to add item to cart", error: error.message });

@@ -7,6 +7,7 @@ const Cart = () => {
     const cartItems = useSelector((state) => state.items);
     const dispatch = useDispatch();
     const userId = localStorage.getItem("_id");
+    console.log(userId);
     useEffect(() => {
         const fetchData = async () => {
             try {

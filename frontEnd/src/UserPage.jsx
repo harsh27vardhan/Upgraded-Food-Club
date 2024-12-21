@@ -24,6 +24,8 @@ const UserPage = ({ city }) => {
             });
             console.log(response);
             setFoods(response.data.food);
+            const cartResponse = await axios.get(`http://localhost:3030/cart/${localStorage.getItem("_id")}`);
+            console.log(cartResponse);
         }
         else {
             console.log(text);
