@@ -38,7 +38,7 @@ exports.logInUser = async (req, res) => {
       const token = setUser(user);
       const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
       res.cookie("token", token, {
-        httpOnly: false,
+        httpOnly: true,
         secure: true,
         sameSite: "None",
         priority: "High",
@@ -46,7 +46,7 @@ exports.logInUser = async (req, res) => {
         expires,
       });
       res.cookie("userRole", user.role, {
-        httpOnly: false, // can access this cookie from the front end
+        httpOnly: true, // can access this cookie from the front end
         secure: true,
         sameSite: "None",
         priority: "High",
