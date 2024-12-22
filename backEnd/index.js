@@ -14,7 +14,7 @@ connectMongoDB("foodclub");
 
 server.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: "https://foodiesclub.vercel.app/",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Allowed HTTP methods
     allowedHeaders: ["Content-Type", "Authorization"],
