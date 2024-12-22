@@ -39,7 +39,7 @@ exports.logInUser = async (req, res) => {
       const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
       res.cookie("token", token, {
         httpOnly: false,
-        secure: false,
+        secure: true,
         sameSite: "None",
         priority: "High",
         maxAge: 7 * 24 * 60 * 60 * 1000,
