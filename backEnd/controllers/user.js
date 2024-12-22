@@ -40,7 +40,7 @@ exports.logInUser = async (req, res) => {
       res.cookie("token", token, {
         httpOnly: false,
         secure: false,
-        sameSite: "Lax",
+        sameSite: "None",
         priority: "High",
         maxAge: 7 * 24 * 60 * 60 * 1000,
         expires,
@@ -48,7 +48,7 @@ exports.logInUser = async (req, res) => {
       res.cookie("userRole", user.role, {
         httpOnly: false, // can access this cookie from the front end
         secure: true,
-        sameSite: "Lax",
+        sameSite: "None",
         priority: "High",
         maxAge: 7 * 24 * 60 * 60 * 1000,
         expires,
