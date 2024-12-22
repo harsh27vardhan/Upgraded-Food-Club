@@ -53,7 +53,9 @@ exports.logInUser = async (req, res) => {
         maxAge: 7 * 24 * 60 * 60 * 1000,
         expires,
       });
-      res.status(200).send({
+      console.log("consoling the res.cokkie atthe login time");
+      console.log(res.cookie);
+      res.send({
         token,
         user, // res.user = user;
         status: "success",
