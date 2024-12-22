@@ -165,7 +165,7 @@ const RestroHome = () => {
     }
 
     return (
-        <div className="w-full h-[100vh] flex flex-col gap-8 items-center p-4 relative">
+        <div className="w-full h-[100vh] flex flex-col gap-8 items-center p-4 relative py-0">
             <Header />
             <div className='flex flex-col gap-4 px-4 h-[calc(100vh - 36px)] w-full overflow-auto'>
                 <div className='flex w-full justify-between pr-4'>

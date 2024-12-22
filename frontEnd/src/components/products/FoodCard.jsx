@@ -45,7 +45,7 @@ function FoodCard({ food }) {
                 <div className="flex justify-between items-center mt-4">
                     {/* Price */}
                     <div className="flex flex-col">
-                        <span className="text-lg font-semibold text-purple-900">${food.price}</span>
+                        <span className="text-lg font-semibold text-purple-900">₹{food.price}</span>
                         {food.discount > 0 && (
                             <span className="text-xs text-red-500">Discount: {food.discount}%</span>
                         )}

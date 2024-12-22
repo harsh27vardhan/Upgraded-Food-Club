@@ -6,7 +6,7 @@ import axios from "axios";
 
 const Header = () => {
     const [showOptions, setShowOptions] = useState(false);
-    const user = document.cookie.split("userRole=")[1];
+    const user = localStorage.getItem('userRole');
     const navigate = useNavigate();
 
     const nowInMilliseconds = Date.now(); // Get milliseconds since the epoch
@@ -22,6 +22,9 @@ const Header = () => {
         });
         if (res.status === 200) {
             console.log(res);
+            localStorage.removeItem("userRole");
+            localStorage.removeItem("token");
+            localStorage.removeItem("_id");
             window.location.reload();
         }
     }

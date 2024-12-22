@@ -19,21 +19,26 @@ const UserPage = ({ city }) => {
         if (text === "") {
             console.log("Pleave give a text");
             //Fetch all the food items from the database
-            const response = await axios.get("https://upgraded-food-club.onrender.com/food", {
-                withCredentials: true,
-            });
+            const response = await axios.get(
+                "https://upgraded-food-club.onrender.com/food",
+                {
+                    withCredentials: true,
+                }
+            );
             console.log(response);
             setFoods(response.data.food);
-            const cartResponse = await axios.get(`https://upgraded-food-club.onrender.com/cart/${localStorage.getItem("_id")}`);
+            const cartResponse = await axios.get(
+                `https://upgraded-food-club.onrender.com/cart/${localStorage.getItem(
+                    "_id"
+                )}`
+            );
             console.log(cartResponse);
-        }
-        else {
+        } else {
             console.log(text);
             //Fetch data from the database according to the text
             // const response = await axios.get(`https://upgraded-food-club.onrender.com/food/search/${text}`);
             // console.log(response);
             navigate(`/search/${text}`);
-
         }
     }
 
@@ -79,80 +84,36 @@ const UserPage = ({ city }) => {
                 </form>
             </div>
 
-            {city && city !== "Unknown Location" &&
-                <h2 className="margin-auto text-3xl font-sans font-bold">Some Really good foods to eat in the City of {city}</h2>
-            }
+            {city && city !== "Unknown Location" && (
+                <h2 className="margin-auto text-3xl font-sans font-bold mx-4">
+                    Some Really good foods to eat in the City of {city}
+                </h2>
+            )}
 
             <div className="flex flex-col gap-4">
                 <p className="text-xl font-semibold px-4">Choose Category</p>
                 <div className="flex flex-wrap w-full justify-evenly">
-                    <div
-                        className="user-food-category-cont flex flex-col w-[12%] items-center gap-2"
-                        onClick={handleClickToSearch}
-                    >
-                        <img
-                            src={MainCourse}
-                            alt="Main"
-                            className="w-[100%] aspect-square rounded-[50%]"
-                        />
-                        <p>Main</p>
-                    </div>
-                    <div
-                        className="user-food-category-cont flex flex-col w-[12%] items-center gap-2"
-                        onClick={handleClickToSearch}
-                    >
-                        <img
-                            src={AppetizerImg}
-                            alt="Appetizer"
-                            className="w-[100%] aspect-square rounded-[50%]"
-                        />
-                        <p>Appetizer</p>
-                    </div>
-                    <div
-                        className="user-food-category-cont flex flex-col w-[12%] items-center gap-2"
-                        onClick={handleClickToSearch}
-                    >
-                        <img
-                            src={DrinkImg}
-                            alt="Drinks"
-                            className="w-[100%] aspect-square rounded-[50%]"
-                        />
-
-                        <p>Drinks</p>
-                    </div>
-                    <div
-                        className="user-food-category-cont flex flex-col w-[12%] items-center gap-2"
-                        onClick={handleClickToSearch}
-                    >
-                        <img
-                            src={DessertImg}
-                            alt="Dessert"
-                            className="w-[100%] aspect-square rounded-[50%]"
-                        />
-                        <p>Dessert</p>
-                    </div>
-                    <div
-                        className="user-food-category-cont flex flex-col w-[12%] items-center gap-2"
-                        onClick={handleClickToSearch}
-                    >
-                        <img
-                            src={FastFoodImg}
-                            alt="Fast Food"
-                            className="w-[100%] aspect-square rounded-[50%]"
-                        />
-                        <p>Fast Food</p>
-                    </div>
-                    <div
-                        className="user-food-category-cont flex flex-col w-[12%] items-center gap-2"
-                        onClick={handleClickToSearch}
-                    >
-                        <img
-                            src={SaladImg}
-                            alt="Salad"
-                            className="w-[100%] aspect-square rounded-[50%]"
-                        />
-                        <p>Salad</p>
-                    </div>
+                    {[
+                        { img: MainCourse, title: "Main" },
+                        { img: AppetizerImg, title: "Appetizer" },
+                        { img: DrinkImg, title: "Drinks" },
+                        { img: DessertImg, title: "Dessert" },
+                        { img: FastFoodImg, title: "Fast Food" },
+                        { img: SaladImg, title: "Salad" },
+                    ].map((item, index) => (
+                        <div
+                            className="user-food-category-cont flex flex-col w-[12%] items-center gap-2"
+                            onClick={handleClickToSearch}
+                            key={index}
+                        >
+                            <img
+                                src={item.img}
+                                alt={item.title}
+                                className="w-[100%] aspect-square rounded-[50%]"
+                            />
+                            <p>{item.title}</p>
+                        </div>
+                    ))}
                 </div>
             </div>
 
@@ -195,12 +156,9 @@ const UserPage = ({ city }) => {
 
             <p className="text-xl font-semibold px-4">Popular Foods</p>
             <div className="flex flex-wrap gap-4 items-center justify-center p-2">
-                {
-                    foods && foods.length > 0 &&
-                    foods.map((food) => (
-                        <FoodCard food={food} />
-                    ))
-                }
+                {foods &&
+                    foods.length > 0 &&
+                    foods.map((food, index) => <FoodCard food={food} key={index} />)}
             </div>
         </div>
     );

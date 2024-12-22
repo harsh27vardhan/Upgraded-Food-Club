@@ -39,8 +39,11 @@ const HomePage = () => {
         }
     }
     useEffect(() => {
-        getUserCity();
-        fetchData();
+        const init = async () => {
+            await getUserCity();
+            await fetchData();
+        }
+        init();
     }, []);
     function handleSearchSubmit(e) {
         e.preventDefault();
@@ -72,8 +75,15 @@ const HomePage = () => {
     // const userRole = document.cookie.split("userRole=")[1];
     const userRole = localStorage.getItem("userRole");
     console.log(userRole);
+    if (userRole === null) {
+        navigate("/login");
+        return null;
+    }
     return userRole === "CUSTOMER" ? (< UserPage city={city} />) : userRole === "ADMIN" ? (< RestroHome />) : (
-        <>You're an unauthorised user....</>
+        <>
+            You're an unauthorised user....
+            {navigate("/login")}
+        </>
     );
 }
 
