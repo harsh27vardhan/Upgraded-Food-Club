@@ -24,7 +24,7 @@ const Signup = () => {
         console.log(formData);
         try {
             const response = await axios.post(
-                "http://localhost:3030/user/signup",
+                "https://upgraded-food-club.onrender.com/user/signup",
                 formData
             );
             console.log(response);
