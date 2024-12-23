@@ -12,11 +12,13 @@ const FoodSearch = () => {
         rating: 0,
         discount: 0,
         isVeg: false,
-        page: 1,
-        limit: 10,
     })
     async function searchFoodItems() {
-        const response = await axios.get(`https://upgraded-food-club.onrender.com/food/search/${searchStr}/${filters.maxPrice}/${filters.discount}/${filters.rating}/${filters.isVeg}/${filters.page}/${filters.limit}`);
+        const maxPrice = foods.maxPrice;
+        const rating = foods.rating;
+        const discount = foods.discount;
+        const isVeg = foods.isVeg;
+        const response = await axios.get(`https://upgraded-food-club.onrender.com/food/search/${searchStr}/${maxPrice}/${discount}/${rating}/${isVeg}`);
         console.log(response);
         if (response.status === 200) {
             setFoods(response.data);
@@ -71,22 +73,6 @@ const FoodSearch = () => {
                     />
                     Vegetarian
                 </label>
-                <input
-                    type="number"
-                    name="page"
-                    value={filters.page}
-                    onChange={handleFilterChange}
-                    placeholder="Page Number"
-                    className="border p-2 rounded"
-                />
-                <input
-                    type="number"
-                    name="limit"
-                    value={filters.limit}
-                    onChange={handleFilterChange}
-                    placeholder="Items Per Page"
-                    className="border p-2 rounded"
-                />
             </div>
             <div className='flex flex-wrap gap-8 p-4'>
                 {foods.map((food) => (
