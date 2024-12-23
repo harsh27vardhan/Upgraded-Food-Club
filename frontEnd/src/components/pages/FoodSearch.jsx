@@ -43,7 +43,7 @@ const FoodSearch = () => {
     const navigate = useNavigate();
     return foods ? (
         <>
-            <div className="flex flex-wrap gap-4 mx-4 mb-6 bg-gray-50 p-4 rounded-lg shadow-lg border border-gray-200">
+            <div className="flex flex-wrap w-full gap-4 mx-4 mb-6 bg-gray-50 rounded-lg shadow-lg border border-gray-200 items-center">
                 <div className="flex flex-col">
                     <label className="text-gray-600 font-semibold mb-2">Max Price:</label>
                     <input

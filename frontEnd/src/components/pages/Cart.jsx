@@ -72,17 +72,20 @@ const Cart = () => {
                                 Price: <span className="font-medium">${item.price.toFixed(2)}</span>
                             </p>
                             <div className="flex items-center mt-2">
-                                <button
-                                    className="px-2 py-1 bg-gray-300 rounded-md hover:bg-gray-400 transition-colors"
-                                    onClick={() =>
-                                        handleQuantityChange(
-                                            item.foodId,
-                                            Math.max(item.quantity - 1, 1)
-                                        )
-                                    }
-                                >
-                                    -
-                                </button>
+                                {item.quantity > 1 ? (
+                                    <button
+                                        className="px-2 py-1 bg-gray-300 rounded-md hover:bg-gray-400 transition-colors"
+                                        onClick={() =>
+                                            handleQuantityChange(
+                                                item.foodId,
+                                                Math.max(item.quantity - 1, 1)
+                                            )
+                                        }
+                                    >
+                                        -
+                                    </button>
+                                ) : null
+                                }
                                 <span className="mx-2 text-gray-700 font-semibold">{item.quantity}</span>
                                 <button
                                     className="px-2 py-1 bg-gray-300 rounded-md hover:bg-gray-400 transition-colors"
