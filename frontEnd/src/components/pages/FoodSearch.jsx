@@ -16,9 +16,7 @@ const FoodSearch = () => {
         limit: 10,
     })
     async function searchFoodItems() {
-        const response = await axios.get(`https://upgraded-food-club.onrender.com/food/search/${searchStr}`, {
-            params: filters,
-        });
+        const response = await axios.get(`https://upgraded-food-club.onrender.com/food/search/${searchStr}/${filters.maxPrice}/${filters.discount}/${filters.rating}/${filters.isVeg}/${filters.page}/${filters.limit}`);
         console.log(response);
         if (response.status === 200) {
             setFoods(response.data);
@@ -39,7 +37,7 @@ const FoodSearch = () => {
     const navigate = useNavigate();
     return foods ? (
         <>
-            <div className="flex flex-wrap gap-4 mb-6">
+            <div className="flex flex-wrap gap-4 mx-4 mb-6">
                 <input
                     type="number"
                     name="maxPrice"
