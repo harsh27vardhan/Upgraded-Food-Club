@@ -63,7 +63,7 @@ const UserPage = ({ city }) => {
     }
     useEffect(() => {
         fetchDataByName();
-    }, []);
+    }, [foods]);
 
     console.log("Complete page re-rendered");
     return (
