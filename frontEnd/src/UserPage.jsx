@@ -21,9 +21,7 @@ const UserPage = ({ city }) => {
             console.log(localStorage.getItem("token"));
             //Fetch all the food items from the database
             const response = await axios.get(
-                "https://upgraded-food-club.onrender.com/food", {
-                token: localStorage.getItem("token"),
-            },
+                "https://upgraded-food-club.onrender.com/food",
                 {
                     withCredentials: true,
                 }
