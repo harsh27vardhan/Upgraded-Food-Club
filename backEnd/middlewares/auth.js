@@ -3,13 +3,13 @@ const { getUser } = require("../services/auth");
 exports.checkAuth = (req, res, next) => {
   console.log("Consoling req.cookies");
   console.log(req.cookies);
-  const localToken = req.query;
-  // ?.token; // used for testing purpose, remove this line in production environment.  //console.log("Consoling local token : ", localToken);  //res.json({ token: localToken });  //return;  //req.body.token = localToken;  //next();  //console.log("Consoling res.body token : ", localToken);  //const cookieToken = req.cookies?.token;
-  console.log("Consoling res.body token : ", localToken);
   const cookieToken = req.cookies?.token;
   const headerToken = req.headers?.authorization?.split(" ")[1] ?? "";
   const token = cookieToken || headerToken;
-  if (!token) {
+  console.log("Token in checkAuth : ", token);
+  console.log("Token in cookie : ", cookieToken);
+  console.log("Token in header : ", headerToken);
+  if (!token || "") {
     console.log({
       message: "Unauthorized access",
       error: true,

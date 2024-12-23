@@ -54,18 +54,11 @@ const HomePage = () => {
     async function fetchData(searchQuery) {
         //  redirect it to the page where there is fetched data and filter it.
         try {
-            const data = {
-                token: localStorage.getItem('token'),
-            };
-            if (!token) {
-                return navigate("/login");
-            }
-            const queryString = new URLSearchParams(data).toString();
-            const url = `https://upgraded-food-club.onrender.com/food?${queryString}`;
-            const response = await fetch(url, {
+            const response = await fetch("https://upgraded-food-club.onrender.com/food", {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`
                 },
                 credentials: "include",
             });
