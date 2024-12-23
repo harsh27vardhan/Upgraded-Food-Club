@@ -3,7 +3,7 @@ const { getUser } = require("../services/auth");
 exports.checkAuth = (req, res, next) => {
   console.log("Consoling req.cookies");
   console.log(req.cookies);
-  const localToken = req.body;
+  const localToken = req.query;
   // ?.token; // used for testing purpose, remove this line in production environment.  //console.log("Consoling local token : ", localToken);  //res.json({ token: localToken });  //return;  //req.body.token = localToken;  //next();  //console.log("Consoling res.body token : ", localToken);  //const cookieToken = req.cookies?.token;
   console.log("Consoling res.body token : ", localToken);
   const cookieToken = req.cookies?.token;
