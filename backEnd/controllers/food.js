@@ -32,7 +32,8 @@ exports.searchFoodItems = (req, res) => {
     isVeg = false,
     page = 1,
     limit = 10,
-  } = req.body;
+  } = req.query;
+  console.log("Max Price: " + maxPrice);
   Food.find({})
     .then((food) => {
       // Filter the food items based on the criteria
