@@ -11,17 +11,18 @@ const Signup = () => {
         password: "",
         role: "CUSTOMER",
     });
+    const [userType, setUserType] = useState(null);
+    const [errorMessage, setErrorMessage] = useState(""); // State to hold error messages
     const navigate = useNavigate();
 
     function handleChange(e) {
-        const { name, value, type, checked } = e.target;
+        const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     }
 
     async function handleSubmit(e) {
         e.preventDefault();
         formData.role = userType;
-        console.log(formData);
         try {
             const response = await axios.post(
                 "https://upgraded-food-club.onrender.com/user/signup",
@@ -29,23 +30,35 @@ const Signup = () => {
             );
             console.log(response);
             navigate("/login");
-        }
-        catch (error) {
+        } catch (error) {
             console.error(error);
+            if (error.response && error.response.data && error.response.data.message) {
+                setErrorMessage(error.response.data.message); // Set the error message from the backend
+            } else {
+                setErrorMessage("Something went wrong. Please try again later."); // Default error message
+            }
         }
     }
-    const [userType, setUserType] = useState(null);
+
     return (
-        <div className="flex h-[100vh] justify-center w-full items-center" style={{
-            backgroundImage: `url(${foodBG})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-        }}>
+        <div
+            className="flex h-[100vh] justify-center w-full items-center"
+            style={{
+                backgroundImage: `url(${foodBG})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+            }}
+        >
             <div className="bg-white bg-opacity-80 backdrop-blur-md p-8 rounded-lg shadow-lg w-fit max-w-md">
                 <h2 className="text-2xl font-bold text-center text-black mb-6">
                     Create a New Account
                 </h2>
+                {errorMessage && ( // Display error message if exists
+                    <div className="text-red-500 text-center mb-4">
+                        {errorMessage}
+                    </div>
+                )}
                 {userType ? (
                     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                         <input
