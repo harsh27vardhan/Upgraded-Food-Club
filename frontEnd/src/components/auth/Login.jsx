@@ -9,6 +9,7 @@ const Login = () => {
         username: "",
         password: "",
     });
+    const [errorMessage, setErrorMessage] = useState("");
     function handleChange(e) {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -48,6 +49,11 @@ const Login = () => {
             }}>
             <div className="bg-white bg-opacity-80 backdrop-blur-md p-8 rounded-lg shadow-lg w-fit max-w-md">
                 <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">Login to Your Account</h2>
+                {errorMessage && ( // Display error message if exists
+                    <div className="text-red-500 text-center mb-4">
+                        {errorMessage}
+                    </div>
+                )}
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     <input
                         type="text"
