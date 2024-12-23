@@ -33,7 +33,7 @@ const Signup = () => {
         } catch (error) {
             console.error(error);
             if (error.response && error.response.data && error.response.data.message) {
-                setErrorMessage(error.response.data.message); // Set the error message from the backend
+                setErrorMessage(error.response.data.message + "\nChange the details"); // Set the error message from the backend
             } else {
                 setErrorMessage("Something went wrong. Please try again later."); // Default error message
             }
