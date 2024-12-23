@@ -8,7 +8,7 @@ const FoodSearch = () => {
     const { searchStr } = useParams();
     const [foods, setFoods] = useState(null);
     const [filters, setFilters] = useState({
-        maxPrice: Infinity,
+        maxPrice: 100000,
         rating: 0,
         discount: 0,
         isVeg: false,

@@ -26,7 +26,7 @@ function foodFilteration(food, payload) {
 exports.searchFoodItems = (req, res) => {
   const { searchStr = "" } = req.params;
   const {
-    maxPrice = Infinity,
+    maxPrice = 100000,
     rating = 0,
     discount = 0,
     isVeg = false,

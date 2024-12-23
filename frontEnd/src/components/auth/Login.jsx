@@ -30,7 +30,12 @@ const Login = () => {
             }
         }
         catch (error) {
-            console.log(error);
+            console.error(error);
+            if (error.response && error.response.data && error.response.data.message) {
+                setErrorMessage(error.response.data.message); // Set the error message from the backend
+            } else {
+                setErrorMessage("Something went wrong. Please try again later."); // Default error message
+            }
         }
     }
     return (
