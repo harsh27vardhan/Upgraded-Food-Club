@@ -18,6 +18,7 @@ const UserPage = ({ city }) => {
     async function fetchDataByName(text = "") {
         if (text === "") {
             console.log("Pleave give a text");
+            console.log(localStorage.getItem("token"));
             //Fetch all the food items from the database
             const response = await axios.get(
                 "https://upgraded-food-club.onrender.com/food", {
