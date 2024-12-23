@@ -33,7 +33,7 @@ const UserPage = ({ city }) => {
                 `https://upgraded-food-club.onrender.com/cart/${localStorage.getItem(
                     "_id"
                 )}`, {
-                token: localStorage.getItem("token");
+                token: localStorage.getItem("token")
             }
             );
             console.log(cartResponse);
