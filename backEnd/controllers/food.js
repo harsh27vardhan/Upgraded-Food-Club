@@ -24,15 +24,15 @@ function foodFilteration(food, payload) {
 }
 
 exports.searchFoodItems = (req, res) => {
+  const { searchStr = "" } = req.params;
   const {
-    searchStr = "",
     maxPrice = Infinity,
     rating = 0,
     discount = 0,
     isVeg = false,
     page = 1,
     limit = 10,
-  } = req.params;
+  } = req.body;
   Food.find({})
     .then((food) => {
       // Filter the food items based on the criteria
