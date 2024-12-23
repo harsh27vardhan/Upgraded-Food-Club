@@ -24,7 +24,7 @@
     margin: 1rem;
   }
   .food-card {
-    width: 250px;
+    width: 280px;
   }
 }
 @media only screen and (max-width: 380px) {
@@ -32,6 +32,6 @@
     font-size: 12px;
   }
   .food-card {
-    width: 200px;
+    width: 160px;
   }
 }
