@@ -14,11 +14,7 @@ const FoodSearch = () => {
         isVeg: false,
     })
     async function searchFoodItems() {
-        const maxPrice = foods.maxPrice;
-        const rating = foods.rating;
-        const discount = foods.discount;
-        const isVeg = foods.isVeg;
-        const response = await axios.get(`https://upgraded-food-club.onrender.com/food/search/${searchStr}/${maxPrice}/${discount}/${rating}/${isVeg}`);
+        const response = await axios.get(`https://upgraded-food-club.onrender.com/food/search/${searchStr}/${filters.maxPrice}/${filters.discount}/${filters.rating}/${filters.isVeg}`);
         console.log(response);
         if (response.status === 200) {
             setFoods(response.data);
