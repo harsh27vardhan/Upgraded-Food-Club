@@ -69,8 +69,9 @@ exports.getFoodItem = (req, res) => {
   // console.log(req.user);
   // res.cookie("user", req.user.role);
   const { restroId = null } = req.params;
-  console.log(restroId);
+  console.log("Restro id is : ", restroId);
   if (restroId) {
+    console.log("In the restro id with :", restroId);
     Food.find({ restroId })
       .then((food) => {
         console.log(food);
@@ -82,8 +83,10 @@ exports.getFoodItem = (req, res) => {
         res.send({ status: "error", message: err.message });
       });
   } else {
+    console.log("In the restro id null");
     Food.find({})
       .then((food) => {
+        console.log("food will be sent to the user", food);
         // const data = foodFilteration(food, req.params);
         res.send({ status: "success", food });
       })
