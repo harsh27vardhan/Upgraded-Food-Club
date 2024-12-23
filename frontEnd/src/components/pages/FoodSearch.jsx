@@ -43,40 +43,56 @@ const FoodSearch = () => {
     const navigate = useNavigate();
     return foods ? (
         <>
-            <div className="flex flex-wrap gap-4 mx-4 mb-6">
-                <input
-                    type="number"
-                    name="maxPrice"
-                    value={filters.maxPrice}
-                    onChange={handleFilterChange}
-                    placeholder="Max Price"
-                    className="border p-2 rounded"
-                />
-                <input
-                    type="number"
-                    name="rating"
-                    value={filters.rating}
-                    onChange={handleFilterChange}
-                    placeholder="Minimum Rating"
-                    className="border p-2 rounded"
-                />
-                <input
-                    type="number"
-                    name="discount"
-                    value={filters.discount}
-                    onChange={handleFilterChange}
-                    placeholder="Minimum Discount"
-                    className="border p-2 rounded"
-                />
-                <label className="flex items-center gap-2">
+            <div className="flex flex-wrap gap-4 mx-4 mb-6 bg-gray-50 p-4 rounded-lg shadow-lg border border-gray-200">
+                <div className="flex flex-col">
+                    <label className="text-gray-600 font-semibold mb-2">Max Price:</label>
+                    <input
+                        type="number"
+                        name="maxPrice"
+                        value={filters.maxPrice}
+                        onChange={handleFilterChange}
+                        placeholder="Max Price"
+                        className="border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+                    />
+                </div>
+                <div className="flex flex-col">
+                    <label className="text-gray-600 font-semibold mb-2">Min Rating:</label>
+                    <input
+                        type="number"
+                        name="rating"
+                        value={filters.rating}
+                        onChange={handleFilterChange}
+                        placeholder="Minimum Rating"
+                        className="border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+                    />
+                </div>
+                <div className="flex flex-col">
+                    <label className="text-gray-600 font-semibold mb-2">Min Discount:</label>
+                    <input
+                        type="number"
+                        name="discount"
+                        value={filters.discount}
+                        onChange={handleFilterChange}
+                        placeholder="Minimum Discount"
+                        className="border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+                    />
+                </div>
+                <div className="flex items-center gap-2">
                     <input
                         type="checkbox"
                         name="isVeg"
                         checked={filters.isVeg}
                         onChange={handleFilterChange}
+                        className="w-5 h-5 accent-green-500 focus:ring-2 focus:ring-green-500 transition duration-300"
                     />
-                    Vegetarian
-                </label>
+                    <label className="text-gray-600 font-semibold">Vegetarian</label>
+                </div>
+                {/* <button
+                    className="bg-blue-500 text-white font-medium px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300 shadow-md"
+                    onClick={() => searchFoodItems()}
+                >
+                    Apply Filters
+                </button> */}
             </div>
             <div className='flex flex-wrap gap-8 p-4'>
                 {foods.map((food) => (
