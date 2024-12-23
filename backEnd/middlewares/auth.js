@@ -9,7 +9,7 @@ exports.checkAuth = (req, res, next) => {
   console.log("Token in checkAuth : ", token);
   console.log("Token in cookie : ", cookieToken);
   console.log("Token in header : ", headerToken);
-  if (!token || "") {
+  if (!token) {
     console.log({
       message: "Unauthorized access",
       error: true,
@@ -28,6 +28,7 @@ exports.checkAuth = (req, res, next) => {
       });
       return res.status(404).redirect("http://localhost:5173/login");
     }
+    console.log("User verified :", user);
     req.user = user;
     next();
   }

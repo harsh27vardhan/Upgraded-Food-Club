@@ -145,7 +145,7 @@ const UserPage = ({ city }) => {
                             className="flex flex-col items-center bg-white border border-gray-300 rounded-lg p-3 shadow-md hover:shadow-lg cursor-pointer transition-shadow"
                         >
                             <img
-                                src={`path/to/images/${item.image}`} // Replace with your image directory
+                                src="" // Replace with your image directory
                                 alt={item.name}
                                 className="w-[50%] aspect-video object-cover rounded-md"
                             />
