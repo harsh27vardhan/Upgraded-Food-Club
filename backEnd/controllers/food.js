@@ -25,8 +25,14 @@ function foodFilteration(food, payload) {
 
 exports.searchFoodItems = (req, res) => {
   const { searchStr = "" } = req.params;
-  const { maxPrice, rating, discount, isVeg, page = 1, limit = 10 } = req.body;
-  console.log("Maximum Price: " + maxPrice);
+  const {
+    maxPrice = 100000,
+    rating = 0,
+    discount = 0,
+    isVeg = false,
+    page = 1,
+    limit = 10,
+  } = req.body;
   Food.find({})
     .then((food) => {
       // Filter the food items based on the criteria
